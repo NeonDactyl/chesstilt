@@ -1,3 +1,7 @@
 <p>Tilt Measurement</p>
-<img *ngIf="!isLoading()" [src]="profile.avatar">
+<div *ngIf="!isLoading()">
+    <img *ngIf="!isLoading()" [src]="profile.avatar"><br />
+    Tilt: {{tilt}}
+
+</div>
 <app-loading *ngIf="isLoading()"></app-loading>

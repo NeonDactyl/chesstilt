@@ -11,13 +11,22 @@ import { profile } from '../Models/Profile';
 export class ChesscomProfileComponent implements OnInit {
 
   username: string = '';
+  tilt: number = 0;
   profile: profile = new profile();
   constructor(private chesscomWebService: ChessWebService,
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.username = this.route.snapshot.data['username'];
-    this.chesscomWebService.profileSubject.subscribe(x => this.profile = x);
+    this.chesscomWebService.profileSubject.subscribe(x => 
+      {
+        this.profile = x;
+        if (this.profile.avatar === undefined || this.profile.avatar === '') this.profile.avatar = 'https://www.chess.com/bundles/web/images/user-image.007dad08.svg'
+      });
+    this.chesscomWebService.tiltSubject.subscribe(x => {
+      this.tilt = x;
+      console.log("tilt updated");
+    });
     this.chesscomWebService.getPlayer(this.username);
   }
 
