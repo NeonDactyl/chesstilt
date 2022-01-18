@@ -8,6 +8,7 @@ import { LoadingComponent } from './loading/loading.component';
 import { HeaderComponent } from './header/header.component';
 import { LogoComponent } from './logo/logo.component';
 import { MaterialModule } from './material/material.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MaterialModule } from './material/material.module';
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
+    FormsModule,
     BrowserAnimationsModule
   ],
   providers: [],

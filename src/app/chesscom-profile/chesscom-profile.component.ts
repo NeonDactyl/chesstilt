@@ -1,5 +1,5 @@
 import { state, style, trigger } from '@angular/animations';
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChessWebService } from '../chess-web.service';
 import { profile } from '../Models/Profile';
@@ -15,14 +15,15 @@ export class ChesscomProfileComponent implements OnInit {
   tilt: number = 0;
   @HostBinding('style.--target-tilt')
   private targetTilt: string = '0%';
+  @Output()
+  usernameSet: EventEmitter<string> = new EventEmitter<string>();
   profile: profile = new profile();
   constructor(private chesscomWebService: ChessWebService,
     private route: ActivatedRoute) {
       this.route.params.subscribe(x =>
         {
-          console.log('in subscription');
-          console.log(x)
           this.username = x['username'];
+          this.usernameSet.next(this.username);
           this.chesscomWebService.getPlayer(this.username);
         })
     }

@@ -11,6 +11,8 @@ const chessWebApi = require('chess-web-api');
   providedIn: 'root'
 })
 export class ChessWebService {
+  username: string = '';
+  usernameSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
   profile: profile = new profile();
   chessApi: any;
   allGames: GameCollection;
@@ -37,7 +39,8 @@ export class ChessWebService {
   
   public getPlayer(username: string): void
   {
-    console.log(username);
+    this.username = username;
+    this.usernameSubject.next(username);
     this.isLoading = true;
     this.chessApi.getPlayer(username, {}, this.setPlayer.bind(this));
     this.chessApi.getPlayerCompleteMonthlyArchives(username, new Date().getFullYear(), new Date().getMonth()+1, {}, this.setPlayerGames.bind(this));
