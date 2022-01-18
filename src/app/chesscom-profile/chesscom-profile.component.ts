@@ -38,7 +38,6 @@ export class ChesscomProfileComponent implements OnInit {
     this.chesscomWebService.tiltSubject.subscribe(x => {
       this.tilt = x;
       this.targetTilt = `${this.tilt * 90 / 100}deg`;
-      console.log("tilt updated");
     });
     this.chesscomWebService.getPlayer(this.username);
   }

@@ -17,7 +17,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.chessWebService.usernameSubject.subscribe(x => {
       this.username = x;
-      console.log('set username in header subscription: ' + this.username);
     });
   }
 

@@ -63,9 +63,6 @@ export class ChessWebService {
     this.dailyGames = new GameCollection(allGames.filter((game) => game.time_class === "daily").slice(-10), this.profile.username);
 
     this.tilt = this.allGames.tilt();
-    console.log(this.allGames.tilt());
-    console.log(this.allGames.Losses / this.allGames.length());
-    console.log(100 * (this.allGames.Losses / this.allGames.length()) - 50);
     this.tiltSubject.next(this.tilt);
   }
 
