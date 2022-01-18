@@ -32,5 +32,5 @@ export class GameCollection {
     }
 
     public length = () => this.Wins + this.Draws + this.Losses;
-    public tilt = () => 100 * this.Losses / this.length();
+    public tilt = () => Math.max(0, 100 * (this.Losses / this.length()) - 50);
 }

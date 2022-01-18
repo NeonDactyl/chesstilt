@@ -1,7 +1,10 @@
-<p>Tilt Measurement</p>
-<div *ngIf="!isLoading()">
-    <img *ngIf="!isLoading()" [src]="profile.avatar"><br />
-    Tilt: {{tilt}}
-
+<div class="profile-wrapper">
+    <div>
+        <h2>This page is under major construction, no warranty provided.</h2>
+    </div>
+    <div *ngIf="!isLoading()">
+        <img *ngIf="!isLoading()" [src]="profile.avatar"><br />
+        <h2>{{username}}</h2>
+    </div>
+    <app-loading *ngIf="isLoading()"></app-loading>
 </div>
-<app-loading *ngIf="isLoading()"></app-loading>

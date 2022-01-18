@@ -37,6 +37,7 @@ export class ChessWebService {
   
   public getPlayer(username: string): void
   {
+    console.log(username);
     this.isLoading = true;
     this.chessApi.getPlayer(username, {}, this.setPlayer.bind(this));
     this.chessApi.getPlayerCompleteMonthlyArchives(username, new Date().getFullYear(), new Date().getMonth()+1, {}, this.setPlayerGames.bind(this));
@@ -59,8 +60,9 @@ export class ChessWebService {
     this.dailyGames = new GameCollection(allGames.filter((game) => game.time_class === "daily").slice(-10), this.profile.username);
 
     this.tilt = this.allGames.tilt();
-    console.log(this.tilt);
     console.log(this.allGames.tilt());
+    console.log(this.allGames.Losses / this.allGames.length());
+    console.log(100 * (this.allGames.Losses / this.allGames.length()) - 50);
     this.tiltSubject.next(this.tilt);
   }
 

@@ -1,4 +1,26 @@
 img {
     width: 200px;
     height: 200px;
+    margin: 5em;
+    animation-name: tilt;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+.profile-wrapper {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes tilt {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(var(--target-tilt, 0));
+    }
 }

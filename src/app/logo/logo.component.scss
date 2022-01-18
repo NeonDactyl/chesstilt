@@ -1,0 +1,28 @@
+$dark-green: #4F7838;
+$light-green: #95BC4A;
+$black-coffee: #483d3fff;
+$green-blue-crayola: #058ed9ff;
+$eggshell: #f4ebd9ff;
+$spanish-gray: #a39a92ff;
+$dim-gray: #77685dff;
+
+
+.logo-tilt {
+    transform: translateY(0.3rem) rotate(15deg) !important;
+  /* Use the text as a mask for the background. */
+  /* This will show the gradient as a text color rather than element bg. */
+}
+
+.logo {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900 !important;
+    color: $eggshell;
+    -webkit-text-stroke: 0.05em $black-coffee;
+    // text-shadow: 2px 2px 3px #fff;
+}
+
+.logo-wrapper {
+    font-size: 3em;
+    display: flex;
+    flex-direction: row;
+}

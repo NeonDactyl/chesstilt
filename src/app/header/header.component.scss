@@ -1,0 +1,26 @@
+$black-coffee: #483d3fff;
+$green-blue-crayola: #058ed9ff;
+$eggshell: #f4ebd9ff;
+$spanish-gray: #a39a92ff;
+$dim-gray: #77685dff;
+
+
+header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: $green-blue-crayola;
+    padding: 1em;
+    margin: 0;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 50%;
+  }
+  
+  .example-full-width {
+    width: 50%;
+  }
