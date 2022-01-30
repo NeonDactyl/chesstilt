@@ -2,10 +2,14 @@
     <!-- <div>
         <h2>This page is under major construction, no warranty provided.</h2>
     </div> -->
-    <div *ngIf="!isLoading()">
+    <div *ngIf="!isLoading() && isValidUser()">
         <img *ngIf="!isLoading()" [src]="profile.avatar"><br />
         <h2>{{username}}</h2>
-        <h4>{{tilt + 50}}% games lost recently</h4>
+        <h4 *ngIf="hasGames()">{{tilt.toFixed(2)}}% tilted</h4>
+        <h4 *ngIf="!hasGames()">No games played this month</h4>
+    </div>
+    <div *ngIf="!isLoading() && !isValidUser()">
+        <h3>That user does not exist on chess.com.</h3>
     </div>
     <app-loading *ngIf="isLoading()"></app-loading>
 </div>

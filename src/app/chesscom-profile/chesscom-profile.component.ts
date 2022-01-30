@@ -41,10 +41,15 @@ export class ChesscomProfileComponent implements OnInit {
     });
     this.chesscomWebService.getPlayer(this.username);
   }
-
-  isLoading(): boolean
-  {
+  isLoading(): boolean {
     return this.chesscomWebService.isLoading;
   }
 
+  isValidUser(): boolean {
+    return !this.chesscomWebService.invalidUser;
+  }
+
+  hasGames(): boolean {
+    return this.chesscomWebService.gameCount !== 0;
+  }
 }
