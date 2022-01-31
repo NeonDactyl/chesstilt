@@ -10,7 +10,7 @@ export class GameCollection {
   "Draws": number = 0;
   "Losses": number = 0;
   private weight: number;
-  private readonly weightMultiplier: number = 0.9;
+  private readonly weightMultiplier: number = 0.5;
 
   constructor(games: Array<GameResponse> = new Array<GameResponse>(), username: string = '') {
     this.Games = new Array<Game>();
@@ -29,7 +29,7 @@ export class GameCollection {
 
   private getGameResult(game: Game): void {
     let result: string = '';
-    let player: Player = (game.black.username == this.username) ? game.black : game.white;
+    let player: Player = (game.black.username.toLowerCase() == this.username.toLowerCase()) ? game.black : game.white;
     if (player.result === "win") {
       this.Wins += this.weight;
       result = 'win';
@@ -42,7 +42,7 @@ export class GameCollection {
       this.Losses += this.weight;
       result = 'loss';
     }
-    console.log(`W: ${this.Wins}\t L: ${this.Losses}\t D: ${this.Draws}\t Total: ${this.Wins + this.Draws + this.Losses}`);
+    console.log(`W: ${this.Wins}\t L: ${this.Losses}\t D: ${this.Draws}\t Total: ${this.Wins + this.Draws + this.Losses}\t Tilt: ${this.tilt()}\t${game.uuid}`);
     this.weight *= this.weightMultiplier;
   }
 

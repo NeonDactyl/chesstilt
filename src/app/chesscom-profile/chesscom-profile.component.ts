@@ -18,6 +18,7 @@ export class ChesscomProfileComponent implements OnInit {
   @Output()
   usernameSet: EventEmitter<string> = new EventEmitter<string>();
   profile: profile = new profile();
+  private readonly urlMatcher = /https:\/\/www\.chess.com\/member\/(.+)/;
   constructor(private chesscomWebService: ChessWebService,
     private route: ActivatedRoute) {
       this.route.params.subscribe(x =>
@@ -34,6 +35,9 @@ export class ChesscomProfileComponent implements OnInit {
       {
         this.profile = x;
         if (this.profile.avatar === undefined || this.profile.avatar === '') this.profile.avatar = 'https://www.chess.com/bundles/web/images/user-image.007dad08.svg'
+        let match = this.urlMatcher.exec(this.profile.url);
+        this.username = match![1];
+        this.chesscomWebService.usernameSubject.next(this.username);
       });
     this.chesscomWebService.tiltSubject.subscribe(x => {
       this.tilt = x;

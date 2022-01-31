@@ -7,8 +7,9 @@ import { ChesscomProfileComponent } from './chesscom-profile/chesscom-profile.co
 import { LoadingComponent } from './loading/loading.component';
 import { HeaderComponent } from './header/header.component';
 import { LogoComponent } from './logo/logo.component';
-import { MaterialModule } from './material/material.module';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -16,14 +17,15 @@ import { FormsModule } from '@angular/forms';
     ChesscomProfileComponent,
     LoadingComponent,
     HeaderComponent,
-    LogoComponent
+    LogoComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MaterialModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
