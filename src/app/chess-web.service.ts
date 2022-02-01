@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Game } from './Models/Game';
 import { GameCollection } from './Models/GameCollection';
 import { GameResponse } from './Models/GameResponse';
+import { PlayerGameSet } from './Models/PlayerGameSet';
 import { profile } from './Models/Profile';
 const chessWebApi = require('chess-web-api');
 
@@ -15,11 +16,7 @@ export class ChessWebService {
   usernameSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
   profile: profile = new profile();
   chessApi: any;
-  allGames: GameCollection;
-  blitzGames: GameCollection;
-  bulletGames: GameCollection;
-  rapidGames: GameCollection;
-  dailyGames: GameCollection;
+  playerGameSet: PlayerGameSet = new PlayerGameSet();
   private nextUserName: string = '';
   gameCount: number = 0;
   tilt: number = 0;
@@ -31,11 +28,6 @@ export class ChessWebService {
   constructor() {
     this.profile = new profile();
     this.chessApi = new chessWebApi();
-    this.allGames = new GameCollection();
-    this.blitzGames = new GameCollection();
-    this.bulletGames = new GameCollection();
-    this.rapidGames = new GameCollection();
-    this.dailyGames = new GameCollection();
   }
   
   public getPlayer(username: string): void
@@ -78,16 +70,44 @@ export class ChessWebService {
   public setPlayerGames(paramOne: any, response: any): void
   {
     const allGames: GameResponse[] = (response.body.games as Array<GameResponse>);
-    // this.allGames = new GameCollection(allGames, this.profile.username);;
-    this.blitzGames = new GameCollection(allGames.filter((game) => game.time_class === "blitz").slice(-10), this.profile.username);
-    // this.bulletGames = new GameCollection(allGames.filter((game) => game.time_class === "bullet").slice(-10), this.profile.username);
-    // this.rapidGames = new GameCollection(allGames.filter((game) => game.time_class === "rapid").slice(-10), this.profile.username);
-    // this.dailyGames = new GameCollection(allGames.filter((game) => game.time_class === "daily").slice(-10), this.profile.username);
+    this.playerGameSet['all'] = new GameCollection(allGames, this.profile.username);;
+    this.playerGameSet['blitz'] = new GameCollection(allGames.filter((game) => game.time_class === "blitz").slice(-10), this.profile.username);
+    this.playerGameSet['bullet'] = new GameCollection(allGames.filter((game) => game.time_class === "bullet").slice(-10), this.profile.username);
+    this.playerGameSet['rapid'] = new GameCollection(allGames.filter((game) => game.time_class === "rapid").slice(-10), this.profile.username);
+    this.playerGameSet['daily'] = new GameCollection(allGames.filter((game) => game.time_class === "daily").slice(-10), this.profile.username);
     
-    this.tilt = this.blitzGames.tilt();
-    this.gameCount = this.blitzGames.length();
+    this.tilt = this.playerGameSet['blitz'].tilt();
+    this.gameCount = this.playerGameSet['blitz'].length();
     this.tiltSubject.next(this.tilt);
     this.isLoading = false;
+  }
+
+  public setGameCollection(key: string)
+  {
+    switch (key)
+    {
+      case 'all':
+        this.tilt = this.playerGameSet['all'].tilt();
+        this.gameCount = this.playerGameSet['all'].length();
+        break;
+      case 'daily':
+        this.tilt = this.playerGameSet['daily'].tilt();
+        this.gameCount = this.playerGameSet['daily'].length();
+        break;
+      case 'bullet':
+        this.tilt = this.playerGameSet['bullet'].tilt();
+        this.gameCount = this.playerGameSet['bullet'].length();
+        break;
+      case 'blitz':
+        this.tilt = this.playerGameSet['blitz'].tilt();
+        this.gameCount = this.playerGameSet['blitz'].length();
+        break;
+      case 'rapid':
+        this.tilt = this.playerGameSet['rapid'].tilt();
+        this.gameCount = this.playerGameSet['rapid'].length();
+        break;
+    }
+    this.tiltSubject.next(this.tilt);
   }
 
 }

@@ -8,6 +8,11 @@ $dim-gray: #77685dff;
   background: $green-blue-crayola;
 }
 
+nav {
+  // border-bottom: medium solid $spanish-gray;
+  box-shadow: 0 2px 3px #000;
+}
+
 header {
     width: 100%;
     display: flex;

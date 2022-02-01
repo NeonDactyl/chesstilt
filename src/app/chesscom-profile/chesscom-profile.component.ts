@@ -10,7 +10,14 @@ import { profile } from '../Models/Profile';
   styleUrls: ['./chesscom-profile.component.scss']
 })
 export class ChesscomProfileComponent implements OnInit {
-
+  readonly gametypes: string[] = [
+    'all',
+    'bullet',
+    'blitz',
+    'rapid',
+    'daily'
+  ];
+  currentType = "blitz";
   username: string = '';
   tilt: number = 0;
   @HostBinding('style.--target-tilt')
@@ -55,5 +62,10 @@ export class ChesscomProfileComponent implements OnInit {
 
   hasGames(): boolean {
     return this.chesscomWebService.gameCount !== 0;
+  }
+
+  setGameCollection(key: string): void {
+    this.currentType = key;
+    this.chesscomWebService.setGameCollection(key);
   }
 }
