@@ -12,13 +12,15 @@
 </div> -->
 
 <div class="container">
-    <div class="text-center mt-5">
+    <div class="text-center mt-5 w-100">
         <app-search></app-search>
-        <div *ngIf="!isLoading() && isValidUser()">
+        <div class="w-100" *ngIf="!isLoading() && isValidUser()">
             <img *ngIf="!isLoading()" [src]="profile.avatar"><br />
-            <h2><a class="link-success" [href]="profile.url">{{username}}</a></h2>
-            <h4 *ngIf="hasGames()">{{tilt.toFixed(2)}}% tilted</h4>
-            <h4 *ngIf="!hasGames()">No games played this month</h4>
+            <div class="details">
+                <h2><a class="link-success" [href]="profile.url">{{username}}</a></h2>
+                <h4 *ngIf="hasGames()">{{tilt.toFixed(2)}}% tilted</h4>
+                <h4 *ngIf="!hasGames()">No games played this month</h4>
+            </div>
         </div>
         <div *ngIf="!isLoading() && !isValidUser()">
             <h3>That user does not exist on chess.com.</h3>

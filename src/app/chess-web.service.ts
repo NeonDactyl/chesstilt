@@ -56,9 +56,7 @@ export class ChessWebService {
 
   private setPlayer(paramone: any, response: any)
   {
-    console.log("in SetPlayer");
     if (paramone) {
-      console.log("invalid response");
       if (paramone.statusCode == 404)
       {
         this.invalidUser = true;
@@ -79,7 +77,6 @@ export class ChessWebService {
   
   public setPlayerGames(paramOne: any, response: any): void
   {
-    console.log("in SetPlayerGames");
     const allGames: GameResponse[] = (response.body.games as Array<GameResponse>);
     // this.allGames = new GameCollection(allGames, this.profile.username);;
     this.blitzGames = new GameCollection(allGames.filter((game) => game.time_class === "blitz").slice(-10), this.profile.username);

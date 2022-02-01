@@ -2,7 +2,11 @@
 /* You can add global styles to this file, and also import other style files */
 html, body {
     margin: 0;
-    background: #A39A92;
+    background-image: url("./assets/bg.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100%;
 }
 $black-coffee: #483d3fff;
 $green-blue-crayola: #058ed9ff;

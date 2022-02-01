@@ -36,7 +36,7 @@ export class ChesscomProfileComponent implements OnInit {
         this.profile = x;
         if (this.profile.avatar === undefined || this.profile.avatar === '') this.profile.avatar = 'https://www.chess.com/bundles/web/images/user-image.007dad08.svg'
         let match = this.urlMatcher.exec(this.profile.url);
-        this.username = match![1];
+        if (!!match) this.username = match![1];
         this.chesscomWebService.usernameSubject.next(this.username);
       });
     this.chesscomWebService.tiltSubject.subscribe(x => {
