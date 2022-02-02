@@ -8,6 +8,23 @@ html, body {
     background-position: center;
     height: 100%;
 }
+
+app-root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+app-header {
+  z-index: 10;
+}
+
+app-chesscom-profile {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 2em;
+}
+
 $black-coffee: #483d3fff;
 $green-blue-crayola: #058ed9ff;
 $eggshell: #f4ebd9ff;

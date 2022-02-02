@@ -65,6 +65,7 @@ export class ChessWebService {
     else {
       this.getPlayer(this.nextUserName);
     }
+    console.error('boop');
   }
   
   public setPlayerGames(paramOne: any, response: any): void
