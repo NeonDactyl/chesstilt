@@ -15,14 +15,16 @@
     <div class="text-center w-100">
         <app-search></app-search>
         <div class="w-100" *ngIf="!isLoading() && isValidUser()">
-            <img [src]="profile.avatar"><br />
+            <img class="tilt-animation" [src]="profile.avatar" [alt]="username" #pfp id="pfp-picture"><br />
             <div class="details">
                 <h2><a class="link-success" [href]="profile.url">{{username}}</a></h2>
                 <h4 *ngIf="hasGames()">{{tilt.toFixed(2)}}% tilted</h4>
                 <h4 *ngIf="!hasGames()">No games played this month</h4>
-                <label *ngFor="let type of gametypes">
-                    <input type="radio" [value]="type" [(ngModel)]="currentType" (change)="setGameCollection(type)" >{{type}}
-                </label>
+                <div class="radio-container">
+                    <label *ngFor="let type of gametypes">
+                        <input type="radio" [value]="type" [(ngModel)]="currentType" (change)="setGameCollection(type)" >{{type}}
+                    </label>
+                </div>
             </div>
         </div>
         <div *ngIf="!isLoading() && !isValidUser()">

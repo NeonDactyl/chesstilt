@@ -13,6 +13,7 @@ const chessWebApi = require('chess-web-api');
 })
 export class ChessWebService {
   username: string = '';
+  key:string;
   usernameSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
   profile: profile = new profile();
   chessApi: any;
@@ -28,6 +29,7 @@ export class ChessWebService {
   constructor() {
     this.profile = new profile();
     this.chessApi = new chessWebApi();
+    this.key = 'blitz';
   }
   
   public getPlayer(username: string): void
@@ -65,26 +67,24 @@ export class ChessWebService {
     else {
       this.getPlayer(this.nextUserName);
     }
-    console.error('boop');
   }
   
   public setPlayerGames(paramOne: any, response: any): void
   {
     const allGames: GameResponse[] = (response.body.games as Array<GameResponse>);
-    this.playerGameSet['all'] = new GameCollection(allGames, this.profile.username);;
+    this.playerGameSet['all'] = new GameCollection(allGames.slice(-10), this.profile.username);;
     this.playerGameSet['blitz'] = new GameCollection(allGames.filter((game) => game.time_class === "blitz").slice(-10), this.profile.username);
     this.playerGameSet['bullet'] = new GameCollection(allGames.filter((game) => game.time_class === "bullet").slice(-10), this.profile.username);
     this.playerGameSet['rapid'] = new GameCollection(allGames.filter((game) => game.time_class === "rapid").slice(-10), this.profile.username);
     this.playerGameSet['daily'] = new GameCollection(allGames.filter((game) => game.time_class === "daily").slice(-10), this.profile.username);
     
-    this.tilt = this.playerGameSet['blitz'].tilt();
-    this.gameCount = this.playerGameSet['blitz'].length();
-    this.tiltSubject.next(this.tilt);
+    this.setGameCollection(this.key);
     this.isLoading = false;
   }
 
   public setGameCollection(key: string)
   {
+    this.key = key;
     switch (key)
     {
       case 'all':

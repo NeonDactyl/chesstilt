@@ -2,11 +2,17 @@ img {
     width: 200px;
     height: 200px;
     margin: 5em;
-    animation-name: tilt;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
+    // animation-name: tilt;
+    // animation-duration: 2s;
+    // animation-fill-mode: forwards;
     box-shadow: 1px 1px 5px;
     background-color: #fff;
+}
+
+.tilt-animation {
+    animation-name: tilt;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
 }
 
 .profile-wrapper {
@@ -27,9 +33,22 @@ div {
     align-items: center;
 }
 
+input {
+    margin: 0.3em;
+}
+
+label {
+    font-size: 1.1em;
+}
+
+div.radio-container {
+    align-items: start;
+    justify-content: left;
+}
+
 @keyframes tilt {
     from {
-        transform: rotate(0deg);
+        transform: rotate(var(--start-tilt, 0));
     }
     to {
         transform: rotate(var(--target-tilt, 0));
