@@ -3,9 +3,12 @@
         <app-search></app-search>
         <div class="w-100" *ngIf="!isLoading()">
             <div class="details">
-                <h2 *ngFor="let player of players">
-                    <a class="link-success" [routerLink]="['chess.com', player.username]">{{displayProfileName(player)}}</a>
-                </h2>
+                <div *ngFor="let player of players" class="card m-1 p-2">
+                    <img class="thumbnail" [src]="player.avatar">
+                    <h4>
+                        <a class="link-success" [routerLink]="['chess.com', player.username]">{{displayProfileName(player)}}</a>
+                    </h4>
+                </div>
             </div>
         </div>
         <app-loading *ngIf="isLoading()"></app-loading>
