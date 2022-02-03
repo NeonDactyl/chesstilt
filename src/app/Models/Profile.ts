@@ -10,4 +10,5 @@ export class profile {
     status: string = '';
     url: string = '';
     username: string = '';
+    name: string = '';
 }

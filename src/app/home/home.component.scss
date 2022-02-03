@@ -1,0 +1,15 @@
+.details {
+    width: 75%;
+    padding: 3em;
+    border-radius: 1em 0;
+    background-color: rgba(215,215,215,0.8);
+}
+
+div {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ChesscomProfileComponent } from './chesscom-profile/chesscom-profile.component';
 import { UsernameResolver } from './chesscom-profile/username.resolver';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
     //   username: UsernameResolver
     // },
     redirectTo: 'chess.com/:username'
+  },
+  {
+    path: '',
+    component: HomeComponent
   }
 ];
 

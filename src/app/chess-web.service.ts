@@ -111,5 +111,21 @@ export class ChessWebService {
     this.tiltSubject.next(this.tilt);
   }
 
+  public async getRandomTopPlayers(): Promise<profile[]> {
+    this.isLoading = true;
+    let result: profile[] = [];
+    await this.chessApi.getLeaderboards().then((response: any) => {
+      result = response.body.live_blitz
+        .sort(() => 0.5 - Math.random())
+        .slice(0,4)
+        .map((x: profile) => x);
+    },
+    (error: any) => {
+      
+    });
+    this.isLoading = false;
+    return result;
+  }
+
 }
 

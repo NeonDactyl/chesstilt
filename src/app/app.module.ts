@@ -10,6 +10,7 @@ import { LogoComponent } from './logo/logo.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SearchComponent } from './search/search.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SearchComponent } from './search/search.component';
     LoadingComponent,
     HeaderComponent,
     LogoComponent,
-    SearchComponent
+    SearchComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
