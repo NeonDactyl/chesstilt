@@ -9,6 +9,7 @@ import { ChessWebService } from '../chess-web.service';
 })
 export class HeaderComponent implements OnInit {
   ngOnInit(): void {
+    console.log('lOoK aT mE');
     console.log('i\'M a PrOgRaMmEr, i\'M uSiNg DeV tOoLs');
     console.log('                                               ixzii:`                                                                                                ');
     console.log('                                              `M@@;`:*,                                                                                               ');
